@@ -80,6 +80,7 @@ function handleClickButton(event) {
   playGame(compPlayer);
   updatePage();
   resetNumber();
+  numRamdom = getRandom(10);
 }
 
 function resetGame(event) {
