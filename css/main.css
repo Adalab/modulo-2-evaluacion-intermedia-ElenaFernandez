@@ -1,3 +1,45 @@
+body{
+    background-color: azure;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.title {
+    color: plum;
+}
+.form{
+    font-size: 18px;
+}
+.option{
+    background-color:powderblue;
+    font-size: 15px;
+}
+.btn{
+    background-color: powderblue;
+    font-size: 15px;
+    width: 70px;
+    padding: 5px;
+
+}
+.button{
+    background-color: powderblue;
+    padding: 5px;
+    font-size: 15px;
+}
+.text{
+    background-color: powderblue;
+    margin-top:20px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.player{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.computer{
+    font-size: 18px;
+}
 .hidden {
     display:none;
 }

@@ -12,20 +12,20 @@
 <body>
     <main class="container">
         <h1 class="title">Juego Piedra, Papel y Tijera</h1>
-        <form action="">
-            <label for="subtitle">Introduce aquií tu jugada:</label>
-            <select class="js_options" name="options_selecter" id="options_selecter">
+        <form action="" class="form">
+            <label for="subtitle">Introduce aquí tu jugada:</label>
+            <select class="js_options option" name="options_selecter" id="options_selecter">
               <option value="choice">Escoge tu jugada</option>
                 <option value="rock">Piedra</option>
                 <option value="paper">Papel</option>
                 <option value="scissors">Tijera</option>
             </select>
-            <input class="js_button" type="submit" value="Juega!" id="play">
-            <input class="js_button hidden" type="submit" value="Reincia el juego y vuelve a jugar!" id="reset">
+            <input class="js_button btn" type="submit" value="Juega!" id="play">
+            <input class="js_button hidden button" type="submit" value="Reincia el juego y vuelve a jugar!" id="reset">
         </form>
-        <div class="js_text"></div>
-        <div class="js_jugador">Jugador:</div>
-        <div class="js_computadora">Computadora:</div>
+        <div class="js_text text"> Vamos a jugar</div>
+        <div class="js_jugador player">Jugador:</div>
+        <div class="js_computadora computer">Computadora:</div>
     </main>
  <script type="text/javascript" src="./js/main.js"></script>
 </body>

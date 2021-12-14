@@ -86,7 +86,7 @@ function resetGame(event) {
   event.preventDefault();
   resetVariables();
   updatePage();
-  textValue.innerHTML = "";
+  textValue.innerHTML= "Vamos a jugar";
   selectOptions.value = "choice";
   resetButtons();
 }
