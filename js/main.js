@@ -1,11 +1,10 @@
-"use strict";
+'use strict';
 
-const playBTn = document.getElementById("play");
-const resetBTn = document.getElementById("reset");
-const selectOptions = document.querySelector(".js_options");
-const textValue = document.querySelector(".js_text");
-const player = document.querySelector(".js_jugador");
-const computer = document.querySelector(".js_computadora");
+
+const selectOptions = document.querySelector('.js_options');
+const textValue = document.querySelector('.js_text');
+const player = document.querySelector('.js_jugador');
+const computer = document.querySelector('.js_computadora');
 
 let contPlayer = 0;
 let contComputer = 0;
@@ -17,37 +16,36 @@ function getRandom(max) {
 
 let numRamdom = getRandom(10);
 
-
 function transformRandom() {
   if (numRamdom < 3) {
-    return "rock";
+    return 'rock';
   } else if (numRamdom >= 6) {
-    return "paper";
+    return 'paper';
   } else {
-    return "scissors";
+    return 'scissors';
   }
 }
 
 function playGame(comp) {
-  if (selectOptions.value === "choice") {
-    textValue.innerHTML = "Escoge una opción.";
+  if (selectOptions.value === 'choice') {
+    textValue.innerHTML = 'Escoge una opción.';
   } else if (selectOptions.value === comp) {
-    textValue.innerHTML = "Has empatado";
+    textValue.innerHTML = 'Has empatado';
     reset++;
   } else if (
-    (selectOptions.value === "rock" && comp === "scissors") ||
-    (selectOptions.value === "paper" && comp === "rock") ||
-    (selectOptions.value === "scissors" && comp === "paper")
+    (selectOptions.value === 'rock' && comp === 'scissors') ||
+    (selectOptions.value === 'paper' && comp === 'rock') ||
+    (selectOptions.value === 'scissors' && comp === 'paper')
   ) {
-    textValue.innerHTML = "Has ganado";
+    textValue.innerHTML = 'Has ganado';
     contPlayer++;
     reset++;
   } else if (
-    (selectOptions.value === "rock" && comp === "paper") ||
-    (selectOptions.value === "paper" && comp === "scissors") ||
-    (selectOptions.value === "scissors" && comp === "rock")
+    (selectOptions.value === 'rock' && comp === 'paper') ||
+    (selectOptions.value === 'paper' && comp === 'scissors') ||
+    (selectOptions.value === 'scissors' && comp === 'rock')
   ) {
-    textValue.innerHTML = "Has perdido";
+    textValue.innerHTML = 'Has perdido';
     contComputer++;
     reset++;
   }
@@ -63,8 +61,8 @@ function resetNumber() {
   }
 }
 function resetButtons() {
-  resetBTn.classList.toggle("hidden");
-  playBTn.classList.toggle("hidden");
+  resetBTn.classList.toggle('hidden');
+  playBTn.classList.toggle('hidden');
 }
 
 function resetVariables() {
@@ -87,10 +85,18 @@ function resetGame(event) {
   event.preventDefault();
   resetVariables();
   updatePage();
-  textValue.innerHTML= "Vamos a jugar";
-  selectOptions.value = "choice";
+  textValue.innerHTML = 'Vamos a jugar';
+  selectOptions.value = 'choice';
   resetButtons();
 }
+//HELPERS
+function listenEvents() {
+  const playBTn = document.getElementById('play');
+  const resetBTn = document.getElementById('reset');
 
-playBTn.addEventListener("click", handleClickButton);
-resetBTn.addEventListener("click", resetGame);
+  playBTn.addEventListener('click', handleClickButton);
+  resetBTn.addEventListener('click', resetGame);
+}
+
+listenEvents();
+
