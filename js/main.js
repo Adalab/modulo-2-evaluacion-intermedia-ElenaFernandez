@@ -1,11 +1,14 @@
 'use strict';
 
-
+const playBTn = document.getElementById('play');
+const resetBTn = document.getElementById('reset');
 const selectOptions = document.querySelector('.js_options');
 const textValue = document.querySelector('.js_text');
 const player = document.querySelector('.js_jugador');
 const computer = document.querySelector('.js_computadora');
+const playTimes = document.querySelector('.js_reset');
 
+let numRamdom = 0;
 let contPlayer = 0;
 let contComputer = 0;
 let reset = 0;
@@ -13,8 +16,6 @@ let reset = 0;
 function getRandom(max) {
   return Math.ceil(Math.random() * max);
 }
-
-let numRamdom = getRandom(10);
 
 function transformRandom() {
   if (numRamdom < 3) {
@@ -28,16 +29,56 @@ function transformRandom() {
 
 function playGame(comp) {
   if (selectOptions.value === 'choice') {
-    textValue.innerHTML = 'Escoge una opción.';
-  } else if (selectOptions.value === comp) {
-    textValue.innerHTML = 'Has empatado';
+    feedbackOptions('Escoge una opción.');
+  } else if (selectOptions.value === 'rock') {
+    if (comp === 'scissors') {
+      feedbackOptions('Has ganado');
+      contPlayer++;
+      reset++;
+    } else if (comp === 'rock') {
+      feedbackOptions('Has empatado');
+      reset++;
+    } else {
+      feedbackOptions('Has perdido');
+      contComputer++;
+      reset++;
+    }
+  } else if (selectOptions.value === 'scissors') {
+    if (comp === 'scissors') {
+      feedbackOptions('Has empatado');
+      reset++;
+    } else if (comp === 'rock') {
+      feedbackOptions('Has perdido');
+      contComputer++;
+      reset++;
+    } else {
+      feedbackOptions('Has ganado');
+      contPlayer++;
+      reset++;
+    }
+  } else if (selectOptions.value === 'paper') {
+    if (comp === 'scissors') {
+      feedbackOptions('Has perdido');
+      contComputer++;
+      reset++;
+    } else if (comp === 'rock') {
+      feedbackOptions('Has ganado');
+      contPlayer++;
+      reset++;
+    } else {
+      feedbackOptions('Has empatado');
+      reset++;
+    }
+  }
+  /*else if (selectOptions.value === comp) {
+    feedbackOptions('Has empatado');
     reset++;
   } else if (
     (selectOptions.value === 'rock' && comp === 'scissors') ||
     (selectOptions.value === 'paper' && comp === 'rock') ||
     (selectOptions.value === 'scissors' && comp === 'paper')
   ) {
-    textValue.innerHTML = 'Has ganado';
+    feedbackOptions('Has ganado');
     contPlayer++;
     reset++;
   } else if (
@@ -45,14 +86,19 @@ function playGame(comp) {
     (selectOptions.value === 'paper' && comp === 'scissors') ||
     (selectOptions.value === 'scissors' && comp === 'rock')
   ) {
-    textValue.innerHTML = 'Has perdido';
+    feedbackOptions('Has perdido');
     contComputer++;
     reset++;
-  }
+  }*/
+}
+
+function feedbackOptions(feedback) {
+  textValue.innerHTML = feedback;
 }
 function updatePage() {
   player.innerHTML = `Jugardor: ${contPlayer}`;
   computer.innerHTML = `Computadora: ${contComputer}`;
+  playTimes.innerHTML = `Veces jugadas: ${reset} `;
 }
 
 function resetNumber() {
@@ -74,29 +120,25 @@ function resetVariables() {
 
 function handleClickButton(event) {
   event.preventDefault();
+  numRamdom = getRandom(10);
   let compPlayer = transformRandom();
   playGame(compPlayer);
   updatePage();
   resetNumber();
-  numRamdom = getRandom(10);
 }
 
 function resetGame(event) {
   event.preventDefault();
   resetVariables();
   updatePage();
-  textValue.innerHTML = 'Vamos a jugar';
+  feedbackOptions('Vamos a jugar');
   selectOptions.value = 'choice';
   resetButtons();
 }
 //HELPERS
 function listenEvents() {
-  const playBTn = document.getElementById('play');
-  const resetBTn = document.getElementById('reset');
-
   playBTn.addEventListener('click', handleClickButton);
   resetBTn.addEventListener('click', resetGame);
 }
 
 listenEvents();
-
